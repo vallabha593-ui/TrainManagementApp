@@ -1,20 +1,40 @@
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
-    public class app {
+public class app {
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
 
-            System.out.println("=====================================");
-            System.out.println("=== Train Consist Management App ===");
-            System.out.println("=====================================\n");
+        System.out.println("=====================================");
+        System.out.println("=== Train Consist Management App ===");
+        System.out.println("=====================================\n");
 
-            List<String> trainConsist = new ArrayList<>();
+        List<String> passengerBogies = new ArrayList<>();
 
-            System.out.println("Train initialized successfully...");
-            System.out.println("Initial Bogie Count : " + trainConsist.size());
-            System.out.println("Current Train Consist : " + trainConsist);
+        passengerBogies.add("Sleeper");
+        passengerBogies.add("AC Chair");
+        passengerBogies.add("First Class");
 
-            System.out.println("\nSystem ready for operations...");
+        System.out.println("Passenger Bogies after addition:");
+        System.out.println(passengerBogies);
+
+        passengerBogies.remove("AC Chair");
+
+        System.out.println("\nAfter removing 'AC Chair':");
+        System.out.println(passengerBogies);
+
+        boolean exists = passengerBogies.contains("Sleeper");
+
+        System.out.println("\nChecking if 'Sleeper' exists:");
+        if (exists) {
+            System.out.println("Sleeper bogie is present in the train.");
+        } else {
+            System.out.println("Sleeper bogie is NOT present.");
         }
+
+        System.out.println("\nFinal Train Consist:");
+        System.out.println(passengerBogies);
+
+        System.out.println("\nSystem ready for next operations...");
     }
+}
