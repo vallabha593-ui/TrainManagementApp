@@ -13,7 +13,7 @@ class Bogie {
     }
 
     public String toString() {
-        return name + "(" + capacity + ")";
+        return name + " - " + capacity;
     }
 }
 
@@ -33,17 +33,18 @@ public class app {
         bogies.add(new Bogie("First Class", 24));
         bogies.add(new Bogie("AC Chair", 54));
 
-        Map<String, List<Bogie>> groupedBogies =
+        // Grouping using Stream
+        Map<String, List<Bogie>> grouped =
                 bogies.stream()
                         .collect(Collectors.groupingBy(b -> b.name));
 
-        System.out.println("Grouped Bogies by Type:\n");
+        System.out.println("Grouped Bogies:\n");
 
-        for (Map.Entry<String, List<Bogie>> entry : groupedBogies.entrySet()) {
+        for (Map.Entry<String, List<Bogie>> entry : grouped.entrySet()) {
             System.out.println(entry.getKey() + " -> " + entry.getValue());
         }
 
-        System.out.println("\nOriginal list remains unchanged:");
+        System.out.println("\nOriginal List:");
         System.out.println(bogies);
     }
 }
