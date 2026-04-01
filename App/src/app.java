@@ -1,5 +1,25 @@
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
+class InvalidCapacityException extends Exception {
+    public InvalidCapacityException(String message) {
+        super(message);
+    }
+}
+
+class PassengerBogie {
+    String type;
+    int capacity;
+
+    PassengerBogie(String type, int capacity) throws InvalidCapacityException {
+        if (capacity <= 0) {
+            throw new InvalidCapacityException("Capacity must be greater than zero");
+        }
+        this.type = type;
+        this.capacity = capacity;
+    }
+
+    public String toString() {
+        return type + " - Capacity: " + capacity;
+    }
+}
 
 public class app {
 
@@ -9,30 +29,17 @@ public class app {
         System.out.println("=== Train Consist Management App ===");
         System.out.println("=====================================\n");
 
-        String trainId = "TRN-1234";
-        String cargoCode = "PET-AB";
+        try {
+            PassengerBogie b1 = new PassengerBogie("Sleeper", 72);
+            System.out.println("Created: " + b1);
 
-        String trainPatternStr = "TRN-\\d{4}";
-        String cargoPatternStr = "PET-[A-Z]{2}";
+            PassengerBogie b2 = new PassengerBogie("AC Chair", -10);
+            System.out.println("Created: " + b2);
 
-        Pattern trainPattern = Pattern.compile(trainPatternStr);
-        Pattern cargoPattern = Pattern.compile(cargoPatternStr);
-
-        Matcher trainMatcher = trainPattern.matcher(trainId);
-        Matcher cargoMatcher = cargoPattern.matcher(cargoCode);
-
-        System.out.println("Train ID Validation:");
-        if (trainMatcher.matches()) {
-            System.out.println(trainId + " is VALID");
-        } else {
-            System.out.println(trainId + " is INVALID");
+        } catch (InvalidCapacityException e) {
+            System.out.println("Error: " + e.getMessage());
         }
 
-        System.out.println("\nCargo Code Validation:");
-        if (cargoMatcher.matches()) {
-            System.out.println(cargoCode + " is VALID");
-        } else {
-            System.out.println(cargoCode + " is INVALID");
-        }
+        System.out.println("\nSystem continues safely...");
     }
 }
