@@ -13,7 +13,7 @@ class Bogie {
     }
 
     public String toString() {
-        return name + " - " + capacity;
+        return name + "(" + capacity + ")";
     }
 }
 
@@ -33,7 +33,7 @@ public class app {
         bogies.add(new Bogie("First Class", 24));
         bogies.add(new Bogie("AC Chair", 54));
 
-        // Grouping using Stream
+        // Group bogies by type
         Map<String, List<Bogie>> grouped =
                 bogies.stream()
                         .collect(Collectors.groupingBy(b -> b.name));
