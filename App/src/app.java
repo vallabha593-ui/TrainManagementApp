@@ -1,5 +1,20 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+class Bogie {
+    String name;
+    int capacity;
+
+    Bogie(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
+    }
+
+    public String toString() {
+        return name + " - Capacity: " + capacity;
+    }
+}
 
 public class app {
 
@@ -9,19 +24,20 @@ public class app {
         System.out.println("=== Train Consist Management App ===");
         System.out.println("=====================================\n");
 
-        HashMap<String, Integer> bogieCapacity = new HashMap<>();
+        List<Bogie> bogies = new ArrayList<>();
 
-        bogieCapacity.put("Sleeper", 72);
-        bogieCapacity.put("AC Chair", 54);
-        bogieCapacity.put("First Class", 24);
+        bogies.add(new Bogie("Sleeper", 72));
+        bogies.add(new Bogie("AC Chair", 54));
+        bogies.add(new Bogie("First Class", 24));
 
-        System.out.println("Bogie Capacity Details:\n");
+        bogies.sort(Comparator.comparingInt(b -> b.capacity));
 
-        for (Map.Entry<String, Integer> entry : bogieCapacity.entrySet()) {
-            System.out.println("Bogie: " + entry.getKey() +
-                    " | Capacity: " + entry.getValue());
+        System.out.println("Bogies sorted by capacity:\n");
+
+        for (Bogie b : bogies) {
+            System.out.println(b);
         }
 
-        System.out.println("\nSystem ready for analysis and planning...");
+        System.out.println("\nSystem ready for planning and optimization...");
     }
 }
